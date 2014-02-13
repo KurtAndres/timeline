@@ -6,56 +6,83 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="319.999977929685" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="320.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="classes.FXMLController">
   <children>
     <MenuButton fx:id="monthMenu" layoutX="14.0" layoutY="285.0" mnemonicParsing="false" text="Month">
       <items>
-        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Jan" />
-        <MenuItem mnemonicParsing="false" text="Feb" />
-        <MenuItem mnemonicParsing="false" text="Mar" />
-        <MenuItem mnemonicParsing="false" text="Apr" />
-        <MenuItem mnemonicParsing="false" text="May" />
-        <MenuItem mnemonicParsing="false" text="Jun" />
-        <MenuItem mnemonicParsing="false" text="Jul" />
-        <MenuItem mnemonicParsing="false" text="Aug" />
-        <MenuItem mnemonicParsing="false" text="Sep" />
-        <MenuItem mnemonicParsing="false" text="Oct" />
-        <MenuItem mnemonicParsing="false" text="Nov" />
-        <MenuItem mnemonicParsing="false" text="Dec" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Jan" fx:id="Jan" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Feb" fx:id="Feb" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Mar" fx:id="Mar" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Apr" fx:id="Apr" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="May" fx:id="May" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Jun" fx:id="Jun" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Jul" fx:id="Jul" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Aug" fx:id="Aug" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Sep" fx:id="Sep" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Oct" fx:id="Oct" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Nov" fx:id="Nov" />
+        <MenuItem mnemonicParsing="false" onAction="#handleMonthAction" text="Dec" fx:id="Dec" />
       </items>
     </MenuButton>
     <MenuButton fx:id="dayMenu" layoutX="99.0" layoutY="284.0" mnemonicParsing="false" text="Day">
       <items>
-        <MenuItem mnemonicParsing="false" text="1" fx:id="day_1" />
-        <MenuItem mnemonicParsing="false" text="2" fx:id="day_2" />
-        <MenuItem mnemonicParsing="false" text="3" fx:id="day_3" />
-        <MenuItem mnemonicParsing="false" text="4" fx:id="day_4" />
-        <MenuItem mnemonicParsing="false" text="5" fx:id="day_5" />
-        <MenuItem mnemonicParsing="false" text="6" fx:id="day_6" />
-        <MenuItem mnemonicParsing="false" text="7" fx:id="day_7" />
-        <MenuItem mnemonicParsing="false" text="8" />
-        <MenuItem mnemonicParsing="false" text="9" />
-        <MenuItem mnemonicParsing="false" text="10" />
-        <MenuItem mnemonicParsing="false" text="11" />
-        <MenuItem mnemonicParsing="false" text="12" />
-        <MenuItem mnemonicParsing="false" text="13" />
-        <MenuItem mnemonicParsing="false" text="14" />
-        <MenuItem mnemonicParsing="false" text="15" />
-        <MenuItem mnemonicParsing="false" text="16" />
-        <MenuItem mnemonicParsing="false" text="17" />
-        <MenuItem mnemonicParsing="false" text="18" />
-        <MenuItem mnemonicParsing="false" text="20" />
-        <MenuItem mnemonicParsing="false" text="21" />
-        <MenuItem mnemonicParsing="false" text="22" />
-        <MenuItem mnemonicParsing="false" text="23" />
-        <MenuItem mnemonicParsing="false" text="24" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="1" fx:id="day_1" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="2" fx:id="day_2" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="3" fx:id="day_3" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="4" fx:id="day_4" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="5" fx:id="day_5" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="6" fx:id="day_6" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="7" fx:id="day_7" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="8" fx:id="day_8" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="9" fx:id="day_9" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="10" fx:id="day_10" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="11" fx:id="day_11" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="12" fx:id="day_12" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="13" fx:id="day_13" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="14" fx:id="day_14" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="15" fx:id="day_15" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="16" fx:id="day_16" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="17" fx:id="day_17" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="18" fx:id="day_18" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="19" fx:id="day_19" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="20" fx:id="day_20" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="21" fx:id="day_21" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="22" fx:id="day_22" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="23" fx:id="day_23" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="24" fx:id="day_24" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="25" fx:id="day_25" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="26" fx:id="day_26" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="27" fx:id="day_27" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="28" fx:id="day_28" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="29" fx:id="day_29" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="30" fx:id="day_30" />
+        <MenuItem mnemonicParsing="false" onAction="#handleDayAction" text="31" fx:id="day_31" />
       </items>
     </MenuButton>
-    <Pane fx:id="timelineRender" layoutX="0.0" layoutY="0.0" prefHeight="252.0" prefWidth="500.0000999999975" />
     <Label fx:id="label" layoutX="14.0" layoutY="259.0" prefWidth="77.0" text="Event" />
-    <TextField layoutX="173.0" layoutY="283.0" prefWidth="77.0" promptText="Year" />
-    <TextField layoutX="409.0" layoutY="285.0" prefWidth="77.0" promptText="Died" />
-    <TextField layoutX="322.0" layoutY="285.0" onKeyTyped="#handleDateBornAction" prefWidth="77.0" promptText="Born" />
+    <TextField fx:id="yearInput" layoutX="173.0" layoutY="283.0" prefWidth="77.0" promptText="Year" />
+    <TextField fx:id="died" layoutX="409.0" layoutY="285.0" prefWidth="77.0" promptText="Died" />
+    <TextField fx:id="born" layoutX="322.0" layoutY="285.0" onKeyTyped="#handleDateBornAction" prefWidth="77.0" promptText="Born" />
     <Label layoutX="322.0" layoutY="262.0" text="Person" />
+    <MenuBar layoutX="-1.0" layoutY="0.0" prefWidth="501.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <ScrollPane fx:id="timelineRender" content="$null" layoutX="0.0" layoutY="24.0" prefHeight="235.0" prefWidth="500.0" />
   </children>
 </AnchorPane>
