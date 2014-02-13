@@ -58,7 +58,11 @@ public class driver extends Application {
         AtomicEvent curesCancer =  new AtomicEvent();
         curesCancer.setEvent("CancerCure", 1994, 11, 22, 00, 00, 00, "Cured cancer on his second birthday.");
         theTimeline.addEvent(curesCancer);
-
+        
+        AtomicEvent poops =  new AtomicEvent();
+        poops.setEvent("poops", 1994, 12, 22, 00, 00, 00, "poops on his second birthday.");
+        theTimeline.addEvent(poops);
+                
         DurationEvent strugglesSocially =  new DurationEvent();
         strugglesSocially.setEvent("Struggle", 1993, 05, 13, 2014, 2, 12, "Continues to struggle with his social life.");
         theTimeline.addEvent(strugglesSocially);

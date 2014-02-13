@@ -32,11 +32,13 @@ import javafx.scene.shape.ArcType;
  */
 public class timelineRender {
     static Timeline tl;
-    static ArrayList<clickSpace> csArray = new ArrayList<clickSpace>();
+    //static ArrayList<clickSpace> csArray = new ArrayList<clickSpace>();
     static clickSpace cs;
+    static HashMap<Integer,Integer> yearMap;
     
     public Canvas getTimelineRender(Timeline timeline){
         tl = timeline;
+        yearMap = new HashMap<Integer,Integer>();
         /*
         Event ev;
         
@@ -100,22 +102,37 @@ public class timelineRender {
             gc.fillText(""+(begin+i), 40+i*100, 60);
             
         }
-        
+        int vOffSet =0;
         Iterator it = tl.timelineEvents.keySet().iterator();
         for(int i = 0; i < tl.timelineEvents.size(); i++ ){
             
             
             
             Event next = tl.timelineEvents.get(it.next());
-            gc.setStroke(Color.RED);
-            gc.setFill(Color.RED);
-            int offset = (next.getStartDay()+(next.getStartMonth()*30))/4;
-            gc.strokeLine(40+(next.getStartYear()-begin)*100+offset, 90, 40+(next.getStartYear()-begin)*100+offset, 110);
-            //clickSpace cls = new clickSpace(35+i*100, 25, next);
-            //csArray.add(cls);
-            gc.fillText(""+next.getStartYear()+"/"+next.getStartMonth()+"/"+next.getStartDay(), 50+(next.getStartYear()-begin)*100, 135);
-            gc.fillText(next.getName(), 50+(next.getStartYear()-begin)*100, 150);
-        }
+            if(!yearMap.containsKey(next.getStartYear())) yearMap.put(next.getStartYear(), 0);
+            
+            vOffSet+=50*yearMap.get(next.getStartYear());
+           
+            if(next.getDuration() == false){
+                gc.setStroke(Color.RED);
+                gc.setFill(Color.RED);
+                int offset = (next.getStartDay()+(next.getStartMonth()*30))/4;
+                
+                gc.strokeLine(40+(next.getStartYear()-begin)*100+offset, 90, 40+(next.getStartYear()-begin)*100+offset, 110);
+                //clickSpace cls = new clickSpace(35+i*100, 25, next);
+                //csArray.add(cls);
+                gc.fillText(""+next.getStartYear()+"/"+next.getStartMonth()+"/"+next.getStartDay(), 50+(next.getStartYear()-begin)*100, 135+vOffSet);
+                gc.fillText(next.getName(), 50+(next.getStartYear()-begin)*100, 150+vOffSet);
+          
+            }else{
+                gc.setStroke(Color.PURPLE);
+                gc.setFill(Color.PURPLE);
+            }
+            int k = yearMap.get(next.getStartYear());
+            k = k+1;
+            yearMap.put(next.getStartYear(), k);
+            
+        }   
         
     }
     /*
