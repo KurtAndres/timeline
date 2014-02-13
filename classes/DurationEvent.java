@@ -35,7 +35,12 @@ public class DurationEvent implements Event {
 		description = d;
                 
                 String tempIDstring;
-                tempIDstring = Integer.toString(sY)+Integer.toString(sM)+Integer.toString(sD);
+                String tempSM, tempSD;
+                if(sM < 10) tempSM ="0"+Integer.toString(sM);
+                else tempSM = Integer.toString(sM);
+                if(sD < 10) tempSD ="0"+Integer.toString(sD);
+                else tempSD = Integer.toString(sD);
+                tempIDstring = Integer.toString(sY)+tempSM+tempSD;
                 timelineID = Integer.parseInt(tempIDstring);
 	}
 

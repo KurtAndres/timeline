@@ -10,9 +10,10 @@ public class Timeline {
 	// we can store the start dates as the key and the events as the value so its sorted by start date
 
 	TreeMap<Integer, Event> timelineEvents = new TreeMap<Integer, Event>(); 
-
-	public Timeline(String name){
-		timelineEvents = null;
+        String name;
+	public Timeline(String nm){
+            
+		name = nm;
 	}
 
 	//add timeline event
