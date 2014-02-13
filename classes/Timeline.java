@@ -8,7 +8,7 @@ public class Timeline {
 	//TreeMap datastructure according to ocs.oracle.com/javase/6/docs/api/java/util/TreeMap.html
 	//is a sorted hashmap essentially by key value that is comparable
 	// we can store the start dates as the key and the events as the value so its sorted by start date
-	
+
 	TreeMap<Integer, Event> timelineEvents = new TreeMap<Integer, Event>(); 
 
 	public Timeline(String name){
@@ -33,11 +33,11 @@ public class Timeline {
 	public void display(){
 		//need to implement this still
 	}
-	
+
 	public void loadTimeline(){
 		//need to implement this to take all the file info and load it into the timeline TreeMap 
 	}
-	
+
 	public void saveTimeline(){
 		//need to implement to save timeline as TreeMap to file.
 	}

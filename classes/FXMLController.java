@@ -1,4 +1,3 @@
-
 package classes;
 
 /*
@@ -302,6 +301,16 @@ public class FXMLController implements Initializable {
 
         // TODO
                 
+    }    
+    
+}
+                
+        
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }    
     
 }
