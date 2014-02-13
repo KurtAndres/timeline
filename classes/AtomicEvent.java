@@ -9,6 +9,9 @@ package classes;
 
 public class AtomicEvent implements Event {
 
+         // atomic or not
+        public boolean isDuration;
+        
 	public String name; //event name
         public String description; //event description
         
@@ -31,6 +34,7 @@ public class AtomicEvent implements Event {
                 endMonth = 0;
                 endDay = 0;
 		description = d;
+                isDuration = false;
                 
                 //set timelineID
                 String tempIDstring;
@@ -126,4 +130,7 @@ public class AtomicEvent implements Event {
 	public String getDescription(){
 		return description;
 	}
+        public boolean getDuration(){
+            return isDuration;
+        }
 }

@@ -9,6 +9,8 @@ package classes;
 
 public class DurationEvent implements Event {
 
+     // atomic or not
+        public boolean isDuration;
 	public String name; //event name
 	public String description; //event description
         
@@ -33,6 +35,7 @@ public class DurationEvent implements Event {
                 endMonth = eM;
                 endDay = eD;
 		description = d;
+                isDuration = true;
                 
                 String tempIDstring;
                 String tempSM, tempSD;
@@ -121,4 +124,7 @@ public class DurationEvent implements Event {
 	public String getDescription() {
 		return description;
 	}
+        public boolean getDuration(){
+            return isDuration;
+        }
 }
