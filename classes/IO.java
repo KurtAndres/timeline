@@ -1,4 +1,4 @@
-
+package classes;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -20,7 +20,7 @@ public class IO {
 	            chooser.getSelectedFile().getName());
 	    }
 	    String filePath = chooser.getSelectedFile().getPath();
-	    Timeline tl;
+	    Timeline tl = null;
 	    try{
 	    	FileInputStream saveFile = new FileInputStream(filePath);
 	    	ObjectInputStream save = new ObjectInputStream(saveFile);

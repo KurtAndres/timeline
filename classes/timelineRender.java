@@ -33,9 +33,9 @@ import javafx.scene.shape.ArcType;
 public class timelineRender {
     static Timeline tl;
     static ArrayList<clickSpace> csArray = new ArrayList<clickSpace>();
+    static clickSpace cs;
     
-    
-    public ScrollPane getTimelineRender(Timeline timeline, ScrollPane scrp){
+    public Canvas getTimelineRender(Timeline timeline){
         tl = timeline;
         /*
         Event ev;
@@ -49,14 +49,15 @@ public class timelineRender {
         */
      
       
-        ScrollPane sp = scrp;
-        sp.setVmax(200);
-        sp.setPrefSize(300,600);
-        Canvas canvas = new Canvas(100+tl.timelineEvents.size()*100, 500);
+         int begin = tl.timelineEvents.firstEntry().getValue().getStartYear();
+        int end = tl.timelineEvents.lastEntry().getValue().getStartYear();
+        int length = end - begin;
+        
+        Canvas canvas = new Canvas(100+(length+2)*100, 1000);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         drawShapes(gc);
-        sp.setContent(canvas);
         
+        /*
         canvas.addEventHandler(MouseEvent.MOUSE_PRESSED, 
                 new EventHandler<MouseEvent>(){
  
@@ -65,8 +66,9 @@ public class timelineRender {
                int x = (int)event.getX();
                int y = (int)event.getY();
                for(int i =0; i<csArray.size(); i++){
-                   clickSpace cs = csArray.get(i);
+                   cs = csArray.get(i);
                    if(x > cs.x && x < cs.x+15 && y > cs.y && y < cs.y+15){
+                       
                        (new Thread(new PopUp())).start();
                         
 
@@ -75,8 +77,8 @@ public class timelineRender {
                 
             }
         });
-        
-        return sp;
+        */
+        return canvas;
         
       
     }
@@ -85,26 +87,43 @@ public class timelineRender {
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(1);
         gc.fillText(tl.name, 40, 20);
-        gc.strokeLine(40, 40, tl.timelineEvents.size()*100, 40);
+        int begin = tl.timelineEvents.firstEntry().getValue().getStartYear();
+        int end = tl.timelineEvents.lastEntry().getValue().getStartYear();
+        
+        int length = end - begin;
+        
+         System.out.println("begin "+begin+" end "+end+" length "+length);
+         
+        gc.strokeLine(40, 100, (length+2)*100, 100);
+        for(int i = 0; i < length+2; i++){
+            gc.strokeLine(40+i*100, 80, 40+i*100, 120);
+            gc.fillText(""+(begin+i), 40+i*100, 60);
+            
+        }
         
         Iterator it = tl.timelineEvents.keySet().iterator();
         for(int i = 0; i < tl.timelineEvents.size(); i++ ){
-            gc.strokeLine(40+i*100, 40, 40+i*100, 80);
-            clickSpace cs = new clickSpace(35+i*100, 25);
-            csArray.add(cs);
-            gc.fillRect(35+i*100, 30, 15, 15);
+            
+            
+            
             Event next = tl.timelineEvents.get(it.next());
-            gc.fillText(next.getStartDate(), 42+i*100, 55);
-            gc.fillText(next.getName(), 42+i*100, 75);
+            gc.setStroke(Color.RED);
+            gc.setFill(Color.RED);
+            int offset = (next.getStartDay()+(next.getStartMonth()*30))/4;
+            gc.strokeLine(40+(next.getStartYear()-begin)*100+offset, 90, 40+(next.getStartYear()-begin)*100+offset, 110);
+            //clickSpace cls = new clickSpace(35+i*100, 25, next);
+            //csArray.add(cls);
+            gc.fillText(""+next.getStartYear()+"/"+next.getStartMonth()+"/"+next.getStartDay(), 50+(next.getStartYear()-begin)*100, 135);
+            gc.fillText(next.getName(), 50+(next.getStartYear()-begin)*100, 150);
         }
         
     }
+    /*
      public class PopUp implements Runnable {
-
+         
      public void run() {
-        showStage();
-        
-        JOptionPane.showMessageDialog(null, "Aditional data from event goes here");
+        //showStage();
+        JOptionPane.showMessageDialog(null, cs.ev.getDescription());
      }
 
      }
@@ -125,5 +144,7 @@ public class timelineRender {
         Scene stageScene = new Scene(comp, 300, 300);
         newStage.setScene(stageScene);
         newStage.show();
+    
 }
+    */
 }

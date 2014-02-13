@@ -13,9 +13,11 @@ package classes;
 public class clickSpace {
     int x;
     int y;
-    clickSpace(int xi, int yi){
+    Event ev;
+    clickSpace(int xi, int yi, Event e){
         this.x = xi;
         this.y = yi;
+        this.ev = e;
     }
     
 }

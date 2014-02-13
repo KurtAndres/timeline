@@ -8,11 +8,13 @@ package classes;
 
 
 
+import static classes.driver.theTimeline;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -24,6 +26,7 @@ import javafx.scene.input.KeyEvent;
 public class FXMLController implements Initializable {
     private int month;
     private int day;
+    private Timeline timeline = theTimeline;
     
     @FXML
     private ResourceBundle resources;
@@ -187,8 +190,18 @@ public class FXMLController implements Initializable {
     @FXML
     void handleDayAction(ActionEvent event) {
         Object source = event.getSource();
-        if (source.equals(day_1)) day = 1;
-        else if (source.equals(day_2)) day = 2;
+        if (source.equals(day_1)){ 
+            day = 1;
+            updateTimeline();
+           
+        }
+        else if (source.equals(day_2)){ 
+            day = 2;
+            DurationEvent walk =  new DurationEvent();
+            walk.setEvent("Walk", 2010, 12, 01, 2013, 12, 31, "Learned the slow process of walking a little late");
+            timeline.addEvent(walk);
+            updateTimeline();
+        }
         else if (source.equals(day_3)) day = 3;
         else if (source.equals(day_4)) day = 4;
         else if (source.equals(day_5)) day = 5;
@@ -228,6 +241,7 @@ public class FXMLController implements Initializable {
     
     public ScrollPane getScrollPane()
     {
+        
         return timelineRender;
     }
 
@@ -269,6 +283,11 @@ public class FXMLController implements Initializable {
         String year = yearInput.getText();
         System.out.println(year);
     }
+    public void updateTimeline(){
+         timelineRender tlr = new timelineRender();
+         Canvas can = tlr.getTimelineRender(timeline);
+         timelineRender.setContent(can);
+    }
                 
        
     
@@ -308,9 +327,4 @@ public class FXMLController implements Initializable {
         
     
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
     
-}
