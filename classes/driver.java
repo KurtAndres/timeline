@@ -1,3 +1,5 @@
+package classes;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -37,6 +39,24 @@ public class driver extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        Timeline kurtLife = new Timeline("Kurt");
+        AtomicEvent Born =  new AtomicEvent();
+        Born.setEvent("Born", 1992, 11, 22, 00, 00, 00, "Kurt was Born.");
+        kurtLife.addEvent(Born);
+       
+        AtomicEvent curesCancer =  new AtomicEvent();
+        curesCancer.setEvent("CancerCure", 1994, 11, 22, 00, 00, 00, "Cured cancer on his second birthday.");
+        kurtLife.addEvent(curesCancer);
+
+        DurationEvent strugglesSocially =  new DurationEvent();
+        strugglesSocially.setEvent("Struggle", 1993, 05, 13, 2014, 2, 12, "Continues to struggle with his social life.");
+        kurtLife.addEvent(strugglesSocially);
+
+        DurationEvent walk =  new DurationEvent();
+        walk.setEvent("Walk", 2010, 12, 01, 2013, 12, 31, "Learned the slow process of walking a little late");
+        kurtLife.addEvent(walk);
+        
     }
     
 }

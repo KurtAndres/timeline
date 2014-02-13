@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.*;
 
 
@@ -7,7 +9,7 @@ public class Timeline {
 	//is a sorted hashmap essentially by key value that is comparable
 	// we can store the start dates as the key and the events as the value so its sorted by start date
 	
-	TreeMap<String, Event> timelineEvents = new TreeMap<String, Event>(); 
+	TreeMap<Integer, Event> timelineEvents = new TreeMap<Integer, Event>(); 
 
 	public Timeline(String name){
 		timelineEvents = null;
@@ -15,14 +17,14 @@ public class Timeline {
 
 	//add timeline event
 	public void addEvent(Event e){
-		timelineEvents.put(e.getStartDate(), e);
+		timelineEvents.put(e.getID(), e);
 	}
 
 	//checks if start date and name are same, then removes event
 	//NOTE, returns String to output to console depending on success or not
 	public String removeEvent(Event e){
-		if(timelineEvents.containsKey(e.getStartDate()) && e.getName()== timelineEvents.get(e.getStartDate()).getName()){
-			timelineEvents.remove(e.getStartDate());
+		if(timelineEvents.containsKey(e.getID()) && e.getName().equals(timelineEvents.get(e.getID()).getName())){
+			timelineEvents.remove(e.getID());
 			return e.getName() + " successfuly removed."; 
 		}else
 			return "Event not found in timeline.";

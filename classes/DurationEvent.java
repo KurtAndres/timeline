@@ -1,3 +1,5 @@
+package classes;
+
 /**
  * @author Kurt Andres
  *
@@ -8,59 +10,110 @@
 public class DurationEvent implements Event {
 
 	public String name; //event name
-	public String startDate; //event start date
 	public String description; //event description
-	public String category; //category to associate event with
-	public String endDate;
+        
+        public int endYear;
+        public int endMonth;
+        public int endDay;
+        
+        public int startYear;
+        public int startMonth;
+        public int startDay;
+        
+	public int timelineID; //event start date as continuous string key
+        
 
-	public void setEvent(String n, String sD, String d, String c) {
+
+        public void setEvent(String n, int sY, int sM, int sD, int eY, int eM, int eD, String d){
 		name = n;
-		startDate = sD;
+                startYear = sY;
+                startMonth = sM;
+                startDay = sD;
+                endYear = eY;
+                endMonth = eM;
+                endDay = eD;
 		description = d;
-		category = c;
+                
+                String tempIDstring;
+                tempIDstring = Integer.toString(sY)+Integer.toString(sM)+Integer.toString(sD);
+                timelineID = Integer.parseInt(tempIDstring);
 	}
 
-	private void setEndDate(String eD) {
-		endDate = eD;
-	}
-
-	public void setName(String n) {
+	public void setName(String n){
 		name = n;
 
 	}
 
-	public void setStartDate(String sD) {
-		startDate= sD;
+	public void setStartYear(int sD){
+		startYear= sD;
 
 	}
+        
+        public void setStartMonth(int sD){
+		startMonth= sD;
 
-	public void setDescription(String d) {
+	}
+        
+        public void setStartDay(int sD){
+		startDay= sD;
+	}
+        
+        public void setEndYear(int sD){
+		endYear= 0;
+	}
+        
+        public void setEndMonth(int sD){
+		endMonth= 0;
+	}
+        
+        public void setEndDay(int sD){
+		endDay= 0;
+	}
+        
+        //note this doesn't work for B.C. dates
+        
+        public void setID(int sY, int sM, int sD){
+           String tempIDstring;
+           tempIDstring = Integer.toString(sY)+Integer.toString(sM)+Integer.toString(sD);
+           timelineID = Integer.parseInt(tempIDstring);
+        }
+        
+	public void setDescription(String d){
 		description = d;
-
 	}
-
-	public void setCategory(String c) {
-		category = c;	
-	}
-
-	public String getName() {
+        
+	public String getName(){
 		return name;
 	}
-
-	public String getStartDate() {
-		return startDate;
+        public int getStartYear(){
+		return startYear;
 	}
-
-	public String getEndDate(){
-		return endDate;
+        
+        public int getStartMonth(){
+            return startMonth;
 	}
+        
+        public int getStartDay(){
+            return startDay;
+	}
+        
+        public int getEndYear(){
+            return endYear;
+	}
+        
+        public int getEndMonth(){
+            return endMonth;
+	}
+        
+        public int getEndDay(){
+            return endDay;
+	}
+        
+        public int getID(){
+            return timelineID;
+        }
 
 	public String getDescription() {
 		return description;
 	}
-
-	public String getCategory() {
-		return category;
-	}
-
 }

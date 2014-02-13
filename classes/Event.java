@@ -1,38 +1,67 @@
+package classes;
+
 /**
  * @author Kurt Andres
  * The below attached Event interface for DurationEvent and AtomicEvent
  */
-//After reading datastructures/ and algorithms book for other class,
-//i have feeling in real project we should use abstract class so we
-//have great flexibility to add more methods and don't have to write
-//methods twice.
 
 public interface Event {
-	
+
 	//sets the total event except for endDate if DurationEvent
-	public void setEvent(String n, String sD, String d, String c);
-	
+	public void setEvent(String name, int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay, String description);
+
 	//set event name
 	public void setName(String n);
+        
+        //sets event timelineID
+        public void setID(int sY, int sM, int sD);
 
-	//sets event StartDate
-	public void setStartDate(String sD);
-	
-	//sets even Description
+	//set start year
+	public void setStartYear(int sY);
+
+	//set start month
+	public void setStartMonth(int sM);
+
+	//set start day
+	public void setStartDay(int sD);
+
+	//set end year
+	public void setEndYear(int sY);
+
+	//set end month
+	public void setEndMonth(int sM);
+
+	//set end day
+	public void setEndDay(int sD);
+
+	//sets event Description
 	public void setDescription(String d);
-	
-	//sets event category
-	public void setCategory(String c);
 
 	//return event Name
 	public String getName();
-	
-	//returns event StartDate
-	public String getStartDate();
-	
+
+	//return event StartYear
+        public int getStartYear();
+        
+        //return start month
+        public int getStartMonth();
+        
+        //return start day
+        public int getStartDay();
+        
+        //return end year
+        public int getEndYear();
+        
+        //return end month
+        public int getEndMonth();
+        
+        //return end day
+        public int getEndDay();
+        
+        //return timelineID
+        public int getID();
+        
 	//returns event Description
 	public String getDescription();
-	
-	//returns event category
-	public String getCategory();
+
 }
