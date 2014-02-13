@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package drawingtest;
+package classes;
 
 import java.util.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,46 +17,42 @@ import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
-
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  *
  * @author Conner
  */
-public class DrawingTest extends Application {
+public class timelineRender {
     static Timeline tl;
     static ArrayList<clickSpace> csArray = new ArrayList<clickSpace>();
-
-    @Override
-    public void start(Stage primaryStage) {
+    
+    
+    public ScrollPane getTimelineRender(Timeline timeline, ScrollPane scrp){
+        tl = timeline;
+        /*
         Event ev;
-        tl = new Timeline("Timeline Name");
-        for(int i = 0; i<10; i++){
-            ev = new AtomicEvent();
+        
+        tl = new drawingtest.Timeline("Timeline Name");
+        for(int i = 0; i<25; i++){
+            ev = new drawingtest.AtomicEvent();
             ev.setEvent("190"+i+" info","190"+i,""+i,""+i);
             tl.addEvent(ev);
         }
-        /* for reference
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
         */
-        
-        StackPane root = new StackPane();
-        //root.getChildren().add(btn);
-        ScrollPane sp = new ScrollPane();
+     
+      
+        ScrollPane sp = scrp;
         sp.setVmax(200);
         sp.setPrefSize(300,600);
-        Canvas canvas = new Canvas(2000, 500);
+        Canvas canvas = new Canvas(100+tl.timelineEvents.size()*100, 500);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         drawShapes(gc);
         sp.setContent(canvas);
@@ -82,27 +75,12 @@ public class DrawingTest extends Application {
                 
             }
         });
-        root.getChildren().add(sp);
-        Scene scene = new Scene(root, 600, 200);
         
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+        return sp;
         
-        launch(args);
+      
     }
-     private void drawShapes(GraphicsContext gc) {
+    private void drawShapes(GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(1);
@@ -112,24 +90,40 @@ public class DrawingTest extends Application {
         Iterator it = tl.timelineEvents.keySet().iterator();
         for(int i = 0; i < tl.timelineEvents.size(); i++ ){
             gc.strokeLine(40+i*100, 40, 40+i*100, 80);
-            clickSpace cs = new clickSpace(40+i*100, 25);
+            clickSpace cs = new clickSpace(35+i*100, 25);
             csArray.add(cs);
-            gc.fillRect(40+i*100, 25, 15, 15);
+            gc.fillRect(35+i*100, 30, 15, 15);
             Event next = tl.timelineEvents.get(it.next());
             gc.fillText(next.getStartDate(), 42+i*100, 55);
             gc.fillText(next.getName(), 42+i*100, 75);
         }
         
     }
-     
-    public class PopUp implements Runnable {
+     public class PopUp implements Runnable {
 
      public void run() {
-        System.out.println("Hello from a thread!");
+        showStage();
+        
         JOptionPane.showMessageDialog(null, "Aditional data from event goes here");
      }
-        
 
+     }
+     public static void showStage(){
+        Stage newStage = new Stage();
+        VBox comp = new VBox(8);
+        //TextField month = new TextField("Month");
+        //TextField month = new TextField("Month");
+        TextField sYear = new TextField("Start Year");
+        TextField eYear = new TextField("End Year");
+        TextField month = new TextField("Month");
+        //TextField month = new TextField("Month");
+        //TextField month = new TextField("Month");
+        //TextField month = new TextField("Month");
+        comp.getChildren().add(sYear);
+        comp.getChildren().add(month);
+
+        Scene stageScene = new Scene(comp, 300, 300);
+        newStage.setScene(stageScene);
+        newStage.show();
 }
 }
-
