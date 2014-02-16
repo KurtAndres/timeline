@@ -5,7 +5,7 @@
  *  @author Conner Vick
  */
 
-package newtimeline;
+package classes;
 
 import java.io.IOException;
 

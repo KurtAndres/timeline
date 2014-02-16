@@ -1,4 +1,4 @@
-package newtimeline;
+package classes;
 
 import java.util.*;
 import javafx.scene.layout.VBox;

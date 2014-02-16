@@ -1,4 +1,4 @@
-package newtimeline;
+package classes;
 /*
 //@author Kurt Andres
 //@author Conner Vick

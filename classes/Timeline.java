@@ -4,7 +4,7 @@
 //that way we can sort the timeline by id
 */
 
-package newtimeline;
+package classes;
 
 import java.util.*;
 import java.io.*;
