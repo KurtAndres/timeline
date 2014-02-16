@@ -1,4 +1,4 @@
-package classes;
+package newtimeline;
 
 import java.util.*;
 import javafx.scene.layout.VBox;
@@ -17,28 +17,28 @@ import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.Border;
+//import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author Conner
+ * @author Kurt Andres
+ * @author Conner Vick
  */
 public class timelineRender {
     static Timeline tl;
     //static ArrayList<clickSpace> csArray = new ArrayList<clickSpace>();
     static clickSpace cs;
     static HashMap<Integer,Integer> yearMap;
-    
+    static HashMap<Integer,Integer> yearMap2;
+    int spacer = 0;
+       
     public Canvas getTimelineRender(Timeline timeline){
+        //Canvas canvas = new Canvas(100+(5)*100, 1000);
         tl = timeline;
+        //if(tl.timelineEvents.size()<2) return canva;
         yearMap = new HashMap<Integer,Integer>();
+        yearMap2 = new HashMap<Integer,Integer>();
         /*
         Event ev;
         
@@ -51,11 +51,20 @@ public class timelineRender {
         */
      
       
-         int begin = tl.timelineEvents.firstEntry().getValue().getStartYear();
+        
+        int begin = tl.timelineEvents.firstEntry().getValue().getStartYear();
         int end = tl.timelineEvents.lastEntry().getValue().getStartYear();
+        Iterator it = tl.timelineEvents.keySet().iterator();
+        
+        while(it.hasNext()){
+            Event next = tl.timelineEvents.get(it.next());
+            if (next.getDuration()){
+                if(next.getEndYear() > end) end = next.getEndYear();
+            }
+        }
         int length = end - begin;
         
-        Canvas canvas = new Canvas(100+(length+2)*100, 1000);
+        Canvas canvas = new Canvas(100+(length+2)*100, 1500);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         drawShapes(gc);
         
@@ -81,8 +90,7 @@ public class timelineRender {
         });
         */
         return canvas;
-        
-      
+       
     }
     private void drawShapes(GraphicsContext gc) {
         gc.setFill(Color.GREEN);
@@ -91,7 +99,14 @@ public class timelineRender {
         gc.fillText(tl.name, 40, 20);
         int begin = tl.timelineEvents.firstEntry().getValue().getStartYear();
         int end = tl.timelineEvents.lastEntry().getValue().getStartYear();
+        Iterator iter = tl.timelineEvents.keySet().iterator();
         
+        while(iter.hasNext()){
+            Event next = tl.timelineEvents.get(iter.next());
+            if (next.getDuration()){
+                if(next.getEndYear() > end) end = next.getEndYear();
+            }
+        }
         int length = end - begin;
         
          System.out.println("begin "+begin+" end "+end+" length "+length);
@@ -102,7 +117,8 @@ public class timelineRender {
             gc.fillText(""+(begin+i), 40+i*100, 60);
             
         }
-        int vOffSet =0;
+        int vOffSet = 0;
+        int vOffSet2 = 0;
         Iterator it = tl.timelineEvents.keySet().iterator();
         for(int i = 0; i < tl.timelineEvents.size(); i++ ){
             
@@ -110,9 +126,9 @@ public class timelineRender {
             
             Event next = tl.timelineEvents.get(it.next());
             if(!yearMap.containsKey(next.getStartYear())) yearMap.put(next.getStartYear(), 0);
+            vOffSet+=40*yearMap.get(next.getStartYear());
             
-            vOffSet+=50*yearMap.get(next.getStartYear());
-           
+            //not duration event
             if(next.getDuration() == false){
                 gc.setStroke(Color.RED);
                 gc.setFill(Color.RED);
@@ -123,10 +139,33 @@ public class timelineRender {
                 //csArray.add(cls);
                 gc.fillText(""+next.getStartYear()+"/"+next.getStartMonth()+"/"+next.getStartDay(), 50+(next.getStartYear()-begin)*100, 135+vOffSet);
                 gc.fillText(next.getName(), 50+(next.getStartYear()-begin)*100, 150+vOffSet);
-          
+          //make purple duration event
             }else{
+                if(!yearMap.containsKey(next.getEndYear())) yearMap.put(next.getEndYear(), 0);
+                vOffSet2+=40*yearMap.get(next.getEndYear());
                 gc.setStroke(Color.PURPLE);
                 gc.setFill(Color.PURPLE);
+                int boffset = (next.getStartDay()+(next.getStartMonth()*30))/4;
+                int eoffset = (next.getEndDay()+(next.getEndMonth()*30))/4;
+                
+                 //spaces duration events so they don't pile on top eachother
+                spacer +=20;
+                
+                //draws the duration event timeline
+                gc.strokeLine(40+(next.getStartYear()-begin)*100+boffset, 90+vOffSet+spacer, 40+(next.getStartYear()-begin)*100+boffset, 110+vOffSet+spacer);
+                gc.strokeLine(40+(next.getEndYear()-begin)*100+eoffset, 90+vOffSet+spacer, 40+(next.getEndYear()-begin)*100+eoffset, 110+vOffSet+spacer);
+                gc.strokeLine(40+(next.getStartYear()-begin)*100+boffset, 99+vOffSet+spacer, 40+(next.getEndYear()-begin)*100+eoffset, 99+vOffSet+spacer);
+                
+                System.out.println(""+next.getEndYear());
+                gc.fillText(""+next.getStartYear()+"/"+next.getStartMonth()+"/"+next.getStartDay(), 50+(next.getStartYear()-begin)*100, 135+vOffSet);
+                gc.fillText(next.getName(), 50+(next.getStartYear()-begin)*100, 150+vOffSet);
+                gc.fillText(""+next.getEndYear()+"/"+next.getEndMonth()+"/"+next.getEndDay(), 50+(next.getEndYear()-begin)*100, 135+vOffSet);
+                gc.fillText(next.getName(), 50+(next.getEndYear()-begin)*100, 150+vOffSet);
+                     
+                
+                int k = yearMap.get(next.getEndYear());
+                k = k+1;
+                yearMap.put(next.getEndYear(), k);
             }
             int k = yearMap.get(next.getStartYear());
             k = k+1;
