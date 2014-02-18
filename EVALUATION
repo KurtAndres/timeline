@@ -1,0 +1,39 @@
+This submission had a very good-looking product with the basic 
+features in place. There were noticeable omissions, however, of some 
+of the supporting pieces of this phase. Impression is that much time 
+was spent on designing the GUI with much success but at the expense of 
+other parts of the project, although uneven contributions among 
+teammates also played a role. On specifics:
+
+
+Data representation: The classes for events, timelines, etc, were very
+poorly designed. The Event interface was a collections of getter
+and setter methods with even a setEvent() method that seemed more
+like a constructor. The AtomicEven and DurationEvent classes were almost
+completely redundant, each with an isDuration tag that was redundant
+in the classes themselves. 
+
+JUnit testing: Absent
+
+Write-up: Absent
+
+GUI: In my judgment, this was the best submission in terms of timeline 
+rendering and overall user experience of the GUI. The need to enter a 
+new event in order to get a timeline loaded from memory to be rendered 
+was unfortunate, but that sort of thing is expected in this phase. 
+Also, the poor modeling of events was reflected in the "Add Event" 
+tab.
+
+Features implemented: Add/delete events, file IO using Java serialization
+to a "tl" file (only submission that used explicit Java serialization),
+atomic/duration (poorly)
+Not implemented: categories
+
+Documentation and style: Much of the code had no documentation at all.
+That which was documented was near useless to someone new to the code
+and did not follow Javadoc formatting.
+
+Concurrency: I found no concurrency problems, though concurrency
+concerns may have been taken care of by JavaFX.
+
+
